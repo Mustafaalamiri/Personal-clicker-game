@@ -98,10 +98,12 @@ setInterval(() => {
   const seconds = Math.min(now - lastTick, 60000) / 1000;
   lastTick = now;
 
+  const bossActiveAtTickStart = state.bossActive;
   const dps = idleDps(CONFIG.upgrades.idle, state.upgrades.idle);
   if (dps > 0) dealDamage(dps * seconds);
 
-  if (state.bossActive) {
+  // Newly spawned bosses must not lose time from before their spawn.
+  if (bossActiveAtTickStart && state.bossActive) {
     state.bossTimeLeft = tickTimer(state.bossTimeLeft, seconds);
     if (isTimeUp(state.bossTimeLeft)) {
       // Gentle failure: no punishment, back to normal enemies until the boss returns
