@@ -29,6 +29,15 @@ Run in browser after every feature, user tests these.
 - [YES] Refreshing on level 2 keeps the hold mechanic
 - [DOABLE] Level 2 boss can be beaten within its 30 seconds with reasonable upgrades
 
+- [YES] Level 3 unlocks after the level 2 boss
+- [YES] The line and two dots appear, and the enemy is faded in the middle
+- [YES] Dragging from the green dot to the red one deals damage and creates a new line
+- [YES] A partial drag deals less damage than a full one
+- [YES] Moving far off the line ends the attempt
+- [YES] Pressing somewhere other than the green dot does nothing
+- [YES] Switching back to levels 1 and 2 restores their mechanics, and the line disappears
+- [YES] Refreshing on level 3 keeps the drag mechanic
+
 ## Bug log
 | Date | What happened | Cause | Fix | AI used |
 
