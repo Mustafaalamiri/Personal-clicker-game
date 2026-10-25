@@ -1,4 +1,4 @@
-# A Clicker Game
+# The Triple Striking
 
 A small browser game where every level changes *how* you attack: plain clicking, holding on a moving target, and dragging along a path. Defeat enemies, earn gold, buy upgrades, and beat each level's boss before its timer runs out to unlock the next one.
 
