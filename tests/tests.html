@@ -47,6 +47,16 @@ test('unlock count capped at total levels', L.unlockedAfterBoss(3, 2, 3) === 3);
 test('mechanic damage multiplies base damage', L.mechanicDamage(3, 8) === 24);
 test('multiplier of 1 leaves damage unchanged', L.mechanicDamage(5, 1) === 5);
 
+const A = { x: 0, y: 0 }, B = { x: 10, y: 0 };
+test('progress at midpoint is 0.5', L.segmentProgress({ x: 5, y: 0 }, A, B) === 0.5);
+test('progress clamps to 0 before start', L.segmentProgress({ x: -5, y: 0 }, A, B) === 0);
+test('progress clamps to 1 past the end', L.segmentProgress({ x: 20, y: 0 }, A, B) === 1);
+test('zero-length segment gives progress 0', L.segmentProgress({ x: 3, y: 3 }, A, A) === 0);
+test('distance to line is perpendicular distance', L.distanceToSegment({ x: 5, y: 3 }, A, B) === 3);
+test('distance past the end uses the endpoint', L.distanceToSegment({ x: 13, y: 4 }, A, B) === 5);
+test('drag multiplier scales with progress', L.dragMultiplier(12, 0.5) === 6);
+test('drag multiplier caps at full value', L.dragMultiplier(12, 2) === 12);
+
 const s = document.createElement('h2');
 s.textContent = failed === 0 ? 'All tests passed' : failed + ' test(s) failed';
 document.body.appendChild(s);

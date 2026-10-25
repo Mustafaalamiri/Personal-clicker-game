@@ -40,3 +40,5 @@ Run in browser after every feature, user tests these.
 
 |24/10/2026 20:54|Not a bug, but scaling issue. Hold mechanic deals same as a normal click. Conceptually does not make sense, needs private multiplier?|Cause|Fix|AI used|
 
+|25/10/2026 17:15|Hold took too long to complete|First guess of 700 ms was too slow in play|Reduced holdMs to 350 in config.js with the drag-mechanic update|Claude|
+

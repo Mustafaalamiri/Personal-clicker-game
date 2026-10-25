@@ -31,3 +31,6 @@ Testing shows hold mechanic is operational. Currently only balance issues. user-
 
 ### 25/10/2026 16:30
 Added previous prompts
+
+### 25/10/2026 17:15
+Added the drag mechanic for lvl 3. Currently visually questionable, will see if able to polish or not.

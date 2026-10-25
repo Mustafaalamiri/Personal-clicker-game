@@ -7,6 +7,7 @@ import { createState, loadState, saveState, clearSave } from './state.js';
 import { buyUpgrade } from './shop.js';
 import { activateClick } from './mechanics/click.js';
 import { activateHold } from './mechanics/hold.js';
+import { activateDrag } from './mechanics/drag.js';
 import { buildShop, buildLevels, render } from './ui.js';
 
 let state = loadState();
@@ -14,7 +15,7 @@ let message = '';
 
 const enemyEl = document.getElementById('enemy');
 const arenaEl = document.getElementById('arena');
-const MECHANICS = { click: activateClick, hold: activateHold }; // drag will be added on Day 3
+const MECHANICS = { click: activateClick, hold: activateHold, drag: activateDrag };
 let deactivateMechanic = null;
 
 const currentLevel = () => CONFIG.levels[state.levelIndex];

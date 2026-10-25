@@ -22,3 +22,8 @@ main { max-width: 480px; margin: 0 auto; padding: 1rem; text-align: center; }
   border-radius: 50%; border: 2px solid #666; touch-action: none;
   background: conic-gradient(#2ecc71 calc(var(--hold, 0) * 1%), #ddd 0);
 }
+
+/* Drag mechanic: the enemy is a backdrop, the path is drawn in an SVG overlay */
+#arena.drag-arena { height: 260px; border: 2px dashed #999; border-radius: 8px; margin: 0.5rem 0; touch-action: none; user-select: none; }
+#enemy.drag-mode { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; opacity: 0.45; }
+.drag-svg { position: absolute; inset: 0; pointer-events: none; }

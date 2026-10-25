@@ -49,3 +49,22 @@ export function unlockedAfterBoss(unlocked, levelIndex, totalLevels) {
 export function mechanicDamage(baseDamage, multiplier) {
   return baseDamage * multiplier;
 }
+
+// --- Drag mechanic geometry ---
+// How far along segment a->b the point p is (0 to 1, clamped).
+export function segmentProgress(p, a, b) {
+  const dx = b.x - a.x, dy = b.y - a.y;
+  const len2 = dx * dx + dy * dy;
+  if (len2 === 0) return 0;
+  const t = ((p.x - a.x) * dx + (p.y - a.y) * dy) / len2;
+  return Math.min(1, Math.max(0, t));
+}
+// Shortest distance from point p to the segment a->b.
+export function distanceToSegment(p, a, b) {
+  const t = segmentProgress(p, a, b);
+  return Math.hypot(p.x - (a.x + t * (b.x - a.x)), p.y - (a.y + t * (b.y - a.y)));
+}
+// Damage multiplier of a drag that reached the given progress (0 to 1).
+export function dragMultiplier(fullMultiplier, progress) {
+  return fullMultiplier * Math.min(1, Math.max(0, progress));
+}
