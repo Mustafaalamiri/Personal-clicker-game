@@ -31,4 +31,6 @@ NOTE:Claude has timestamps for each prompt, indicating that it is possible to ge
 
 |25/10/2026|Claude|Plan the last day (logs, README, video, level 3 in about 4 hours)((NOTE: I (the person) gave the AI 4 hours as I was not sure how much time I had left and gave it an estimation))|Gave a time-boxed plan and said what to cut first (level 3). I didn’t need to cut it.|
 
+|25/10/2026|Claude|Add the drag mechanic for level 3|Line, dots, progress-based damage and path tolerance worked. When playing it I found too many failed attempts, a hard-to-read line over the emoji, and no feedback on damage.|
+->|25/10/2026|Claude|Make drag easier: colour-code the damage, enlarge the elements, remove the emoji’s button box|I picked the ideas and asked for thresholds. It suggested four colour tiers and counting 90% as complete. ((NOTE: this means you won't see the line become green since that is after 90%)) It put the thresholds in testable logic with 7 new tests.|
 

@@ -1,5 +1,8 @@
 # Testing
 
+## Definitions:
+"(())" refers to person giving comments in log.
+
 ## Automated logic tests
 Open `tests/tests.html` via the local server. Covers `js/logic.js`. Currently 25/25 pass locally.
 
@@ -38,6 +41,10 @@ Run in browser after every feature, user tests these.
 - [YES] Switching back to levels 1 and 2 restores their mechanics, and the line disappears
 - [YES] Refreshing on level 3 keeps the drag mechanic
 
+- [PARTIAL] The trail changes colour as you drag (grey, orange, yellow, green)
+- [YES] Reaching the green zone completes the drag automatically
+- [YES] The dots and line are easier to hit than before
+- [YES] The emoji has no grey box on level 3, and the path is readable on top of it
 ## Bug log
 | Date | What happened | Cause | Fix | AI used |
 
@@ -51,3 +58,4 @@ Run in browser after every feature, user tests these.
 
 |25/10/2026 17:15|Hold took too long to complete|First guess of 700 ms was too slow in play|Reduced holdMs to 350 in config.js with the drag-mechanic update|Claude|
 
+|25/10/2026 19:00|Drag attempts failed too often, and it was unclear how much damage a drag would do|The tolerance and dots were too small, and the trail was one colour|Larger dots, wider start zone and tolerance (28 to 45 px), 90% counts as complete, and the trail colour shows the damage tier ((NOTE: The line never becomes green because once you reach 90%, the dragging is considered complete and gives you next line. Decided to accept that for now, more polishing would require adjusting redundant code.))|Claude|
