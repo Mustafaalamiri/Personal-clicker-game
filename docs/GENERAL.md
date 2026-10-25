@@ -43,3 +43,6 @@ Patched drag-mechanic, should be more forgiving. Balance issues remain, not adju
 ### 25/10/2026 19:00
 Testing complete, logic tests passed. Prototype seems good enough as it is now. As a future thought, it would be better to add another level between the click and hold level to introduce the concept of a target switching locations, as the target at lvl 1 is static. There are some other issues, such as balancing (mentioned frequently), variety in upgrades, etc. The biggest flaw is the concept of idleness. The AI wanted to call the game "idle clicker", yet the idle upgrade proves to be very ineffective currently. For this, I have personally change the title to "A Clicker Game" to reflect this. This may not be a significant change.
 For testing part, the line in lvl 3 is more visible and includes its own padding it seems, meanwhile the box the emoji had (similar to lvl 1) is gone, which should be more visually acceptable.
+
+### 25/10/2026 20:51
+I wrote this after the commit, but this log was supposed to be for the README commit. Unsure if both video and Github Pages are needed, but may as well. I adjusted the README so it isn't too inaccurate (disclaimer, the README was also written with Claude's help, but there were a couple of inaccuracies I had to adjust, and make some additions)

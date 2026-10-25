@@ -71,7 +71,7 @@ The key design choice is keeping the game rules (`logic.js`) separate from drawi
 
 ## How I used AI
 
-- **Claude** was used for planning (comparing ideas and scoping to four days), writing the code, debugging, and writing documentation.
+- **Claude** (Sonnet 5.5 effort:medium) was used for planning (comparing ideas and scoping to four days), writing the code, debugging, and writing documentation.
 - I did the testing and decision making: I played every feature, reported what felt wrong, and chose between the options the AI proposed.
 - The AI made mistakes that I found by playing. For example, idle damage stopped when the browser tab was in the background, enemies kept scaling when a level was replayed, and the drag mechanic failed too often at first.
 
