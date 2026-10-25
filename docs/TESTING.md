@@ -15,11 +15,11 @@ Open `tests/tests.html` via the local server. Covers `js/logic.js`.
 - [YES] Boss appears after 10 kills, and the info line switches to a countdown
 - [YES] Killing the boss gives a lot of gold and unlocks Level 2
 - [YES] Letting the timer run out removes the boss and starts a new 10-kill count
-- [YES] Level 2 button is locked at the start and works after the boss
+- [YES]* Level 2 button is locked at the start and works after the boss
 - [PARTIAL] Refreshing mid-boss keeps the boss and its timer
 -> It refreshes boss HP and timer, currently accepted behavior
 
-- [REPEATED] Level 2 button unlocks after the level 1 boss
+- [REPEATED]* Level 2 button unlocks after the level 1 boss
 - [YES] Switching to level 2 shows the dashed box and the round target
 - [YES] Holding fills the ring and deals damage, and the target moves afterwards
 - [YES] Releasing early resets the ring with no damage
