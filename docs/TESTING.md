@@ -1,9 +1,11 @@
 # Testing
 
 ## Automated logic tests
-Open `tests/tests.html` via the local server. Covers `js/logic.js`.
+Open `tests/tests.html` via the local server. Covers `js/logic.js`. Currently 25/25 pass locally.
 
 ## Manual checklist
+Run in browser after every feature, user tests these.
+
 - [YES] Clicking the enemy lowers its HP
 - [YES] Killing an enemy gives gold and spawns a stronger one
 - [YES] Shop buttons are disabled when gold is too low
