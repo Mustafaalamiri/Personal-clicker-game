@@ -1,11 +1,15 @@
 // Level 3 mechanic: press the green dot, drag along the line towards the red dot.
-// Damage scales with how far you got. Straying too far from the line ends the attempt
-// (you keep the damage for the progress so far). A new path appears after every attempt.
-import { segmentProgress, distanceToSegment, dragMultiplier } from '../logic.js';
+// Damage scales with how far you got (reaching 90% counts as complete). The trail colour shows
+// the damage tier. Straying too far from the line ends the attempt (you keep the damage so far).
+// A new path appears after every attempt.
+import {
+  segmentProgress, distanceToSegment, dragMultiplier,
+  dragEffectiveProgress, dragTier, DRAG_FULL_PROGRESS,
+} from '../logic.js';
 
 const NS = 'http://www.w3.org/2000/svg';
-const START_RADIUS = 26;   // how close to the green dot you must press
-const MIN_PROGRESS = 0.1;  // ignore accidental taps
+const START_RADIUS = 40;   // how close to the start dot you must press
+const TIER_COLORS = { none: '#bbbbbb', low: '#e67e22', mid: '#f1c40f', full: '#2ecc71' };
 const rand = (min, max) => min + Math.random() * (max - min);
 
 function make(tag, attrs) {
@@ -23,11 +27,12 @@ export function activateDrag(element, arena, onValidAction, level) {
 
   const w = arena.clientWidth, h = arena.clientHeight;
   const svg = make('svg', { class: 'drag-svg', width: w, height: h, viewBox: `0 0 ${w} ${h}` });
-  const guide = make('line', { stroke: '#999', 'stroke-width': 4, 'stroke-dasharray': '8 6' });
-  const trail = make('line', { stroke: '#2ecc71', 'stroke-width': 7, 'stroke-linecap': 'round' });
-  const startDot = make('circle', { r: 14, fill: '#2ecc71' });
-  const endDot = make('circle', { r: 14, fill: '#c0392b' });
-  svg.append(guide, trail, startDot, endDot);
+  const outline = make('line', { stroke: '#ffffff', 'stroke-width': 14, 'stroke-linecap': 'round', opacity: 0.8 });
+  const guide = make('line', { stroke: '#777', 'stroke-width': 6, 'stroke-dasharray': '10 8' });
+  const trail = make('line', { stroke: TIER_COLORS.none, 'stroke-width': 10, 'stroke-linecap': 'round' });
+  const startDot = make('circle', { r: 20, fill: '#2ecc71', stroke: '#fff', 'stroke-width': 3 });
+  const endDot = make('circle', { r: 20, fill: '#c0392b', stroke: '#fff', 'stroke-width': 3 });
+  svg.append(outline, guide, trail, startDot, endDot);
   arena.appendChild(svg);
 
   function newPath() {
@@ -40,6 +45,8 @@ export function activateDrag(element, arena, onValidAction, level) {
     furthest = 0;
     guide.setAttribute('x1', a.x); guide.setAttribute('y1', a.y);
     guide.setAttribute('x2', b.x); guide.setAttribute('y2', b.y);
+    outline.setAttribute('x1', a.x); outline.setAttribute('y1', a.y);
+    outline.setAttribute('x2', b.x); outline.setAttribute('y2', b.y);
     startDot.setAttribute('cx', a.x); startDot.setAttribute('cy', a.y);
     endDot.setAttribute('cx', b.x); endDot.setAttribute('cy', b.y);
     drawTrail();
@@ -49,6 +56,7 @@ export function activateDrag(element, arena, onValidAction, level) {
     trail.setAttribute('x1', a.x); trail.setAttribute('y1', a.y);
     trail.setAttribute('x2', a.x + furthest * (b.x - a.x));
     trail.setAttribute('y2', a.y + furthest * (b.y - a.y));
+    trail.setAttribute('stroke', TIER_COLORS[dragTier(furthest)]);
   }
 
   function local(e) {
@@ -59,7 +67,8 @@ export function activateDrag(element, arena, onValidAction, level) {
   function finish() {
     if (!active) return;
     active = false;
-    if (furthest >= MIN_PROGRESS) onValidAction(dragMultiplier(level.dragDamageMultiplier, furthest));
+    const effective = dragEffectiveProgress(furthest);
+    if (effective > 0) onValidAction(dragMultiplier(level.dragDamageMultiplier, effective));
     newPath();
   }
 
@@ -78,7 +87,7 @@ export function activateDrag(element, arena, onValidAction, level) {
     if (distanceToSegment(p, a, b) > tolerance) { finish(); return; }
     furthest = Math.max(furthest, segmentProgress(p, a, b));
     drawTrail();
-    if (furthest >= 0.98) { furthest = 1; finish(); }
+    if (furthest >= DRAG_FULL_PROGRESS) finish();
   }
 
   const noMenu = (e) => e.preventDefault();

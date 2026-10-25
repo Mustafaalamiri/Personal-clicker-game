@@ -57,6 +57,14 @@ test('distance past the end uses the endpoint', L.distanceToSegment({ x: 13, y: 
 test('drag multiplier scales with progress', L.dragMultiplier(12, 0.5) === 6);
 test('drag multiplier caps at full value', L.dragMultiplier(12, 2) === 12);
 
+test('drag below 10% counts as nothing', L.dragEffectiveProgress(0.05) === 0);
+test('drag at 50% counts as 50%', L.dragEffectiveProgress(0.5) === 0.5);
+test('drag at 90% counts as complete', L.dragEffectiveProgress(0.9) === 1);
+test('tier none below minimum', L.dragTier(0.05) === 'none');
+test('tier low for a short drag', L.dragTier(0.3) === 'low');
+test('tier mid for a long drag', L.dragTier(0.7) === 'mid');
+test('tier full near the end', L.dragTier(0.95) === 'full');
+
 const s = document.createElement('h2');
 s.textContent = failed === 0 ? 'All tests passed' : failed + ' test(s) failed';
 document.body.appendChild(s);

@@ -68,3 +68,19 @@ export function distanceToSegment(p, a, b) {
 export function dragMultiplier(fullMultiplier, progress) {
   return fullMultiplier * Math.min(1, Math.max(0, progress));
 }
+
+// Drag feedback: below DRAG_MIN_PROGRESS nothing counts, from DRAG_FULL_PROGRESS on it counts as complete.
+export const DRAG_MIN_PROGRESS = 0.1;
+export const DRAG_FULL_PROGRESS = 0.9;
+export function dragEffectiveProgress(progress) {
+  if (progress < DRAG_MIN_PROGRESS) return 0;
+  if (progress >= DRAG_FULL_PROGRESS) return 1;
+  return progress;
+}
+// 'none' | 'low' | 'mid' | 'full', used to colour the trail
+export function dragTier(progress) {
+  const e = dragEffectiveProgress(progress);
+  if (e === 0) return 'none';
+  if (e === 1) return 'full';
+  return e < 0.5 ? 'low' : 'mid';
+}

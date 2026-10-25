@@ -27,3 +27,6 @@ main { max-width: 480px; margin: 0 auto; padding: 1rem; text-align: center; }
 #arena.drag-arena { height: 260px; border: 2px dashed #999; border-radius: 8px; margin: 0.5rem 0; touch-action: none; user-select: none; }
 #enemy.drag-mode { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; opacity: 0.45; }
 .drag-svg { position: absolute; inset: 0; pointer-events: none; }
+
+/* Drag level: show the enemy as a plain faded emoji, without the button box */
+#enemy.drag-mode { background: none; border: none; padding: 0; box-shadow: none; }

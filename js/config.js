@@ -12,7 +12,7 @@ export const CONFIG = {
       killsBeforeBoss: 10, bossHpMultiplier: 8, bossTimeSec: 30, bossGoldMultiplier: 10 },
     { name: 'Level 2: Hollow Cave', mechanic: 'hold', holdMs: 350, holdDamageMultiplier: 8, enemyBaseHp: 80, hpGrowth: 1.15, goldBase: 20, goldGrowth: 1.1,
       killsBeforeBoss: 10, bossHpMultiplier: 8, bossTimeSec: 30, bossGoldMultiplier: 10 },
-    { name: 'Level 3: Crystal Peak', mechanic: 'drag', dragDamageMultiplier: 12, dragTolerancePx: 28, enemyBaseHp: 640, hpGrowth: 1.15, goldBase: 160, goldGrowth: 1.1,
+    { name: 'Level 3: Crystal Peak', mechanic: 'drag', dragDamageMultiplier: 12, dragTolerancePx: 45, enemyBaseHp: 640, hpGrowth: 1.15, goldBase: 160, goldGrowth: 1.1,
       killsBeforeBoss: 10, bossHpMultiplier: 8, bossTimeSec: 40, bossGoldMultiplier: 10 },
   ],
 
